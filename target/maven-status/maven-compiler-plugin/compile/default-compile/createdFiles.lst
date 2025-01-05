@@ -1,0 +1,6 @@
+com\example\tasklist\config\TaskListDataRestConfig.class
+com\example\tasklist\TaskListApplication.class
+com\example\tasklist\entity\Task.class
+com\example\tasklist\dao\TaskRepository.class
+com\example\tasklist\controller\TaskController.class
+com\example\tasklist\service\TaskService.class
