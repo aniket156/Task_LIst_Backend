@@ -1,22 +1,8 @@
-# Use a Maven image to build the project
-FROM maven:3.8.7-openjdk-17-slim AS build
-WORKDIR /app
-
-# Copy the project files into the container
+FROM maven:3.8.7-openjdk-17 AS build
 COPY . .
-
-# Build the project
 RUN mvn clean package -DskipTests
 
-# Use a lightweight JDK image to run the app
 FROM openjdk:17-jdk-slim
-WORKDIR /app
-
-# Copy the JAR file from the build stage
-COPY --from=build /app/target/*.jar app.jar
-
-# Expose the port your Spring Boot app runs on
+COPY --from=build /target/Task-List-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# Command to run the application
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
